@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "gatsby";
-import Header from "../components/Header";
+import { Container, Header } from "../components";
 
 export default function home() {
   return (
-    <div>
-      <Link to="/about/">about</Link>
-      <span>{"  "}</span>
-      <Link to="/contact/">contact</Link>
-      <Header text="hello" />
+    <Container>
+      <div>
+        <Link to="/about/">about</Link>
+        <span>{"  "}</span>
+        <Link to="/contact/">contact</Link>
+      </div>
+      <Header text="Home" />
       <p>Hello world!</p>
-    </div>
+    </Container>
   );
 }
