@@ -1,14 +1,12 @@
 import React from "react";
-import { Link } from "gatsby";
 
-import { Container, Header } from "../components";
+import { Layout, Header } from "../components";
 
 export default function About() {
   return (
-    <Container>
-      <Link to="/">home</Link>
+    <Layout>
       <Header text="About" />
       <p>gatsby is cool</p>
-    </Container>
+    </Layout>
   );
 }
