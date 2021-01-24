@@ -1,50 +1,13 @@
-import { graphql } from "gatsby";
 import React from "react";
 
 import { Layout, Header } from "../components";
+import Main from "../app/main";
 
-export default function home({
-  data: {
-    postgres: { users },
-  },
-}: PostgresQuery<Users>) {
+export default function home() {
   return (
-    <Layout>
+    <Layout style={{ border: "solid" }}>
       <Header text="Home" />
-      {users.map((user: { id: number; username: string }) => {
-        return (
-          <div>
-            id: {user.id} username: {user.username}
-          </div>
-        );
-      })}
-      <p>Hello world!</p>
+      <Main />
     </Layout>
   );
 }
-
-interface User {
-  id: number;
-  username: string;
-}
-
-interface Users {
-  users: User[];
-}
-
-interface PostgresQuery<T> {
-  data: {
-    postgres: T;
-  };
-}
-
-export const query = graphql`
-  {
-    postgres {
-      users: allUsersList {
-        id
-        username
-      }
-    }
-  }
-`;
