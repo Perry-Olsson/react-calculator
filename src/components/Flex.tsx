@@ -1,16 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { BaseProps } from "./types";
 
-const Flex: React.FC<{
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-  restProps?: React.HTMLAttributes<any>;
-}> = ({ children, style, ...restProps }) => {
-  return (
-    <Container style={style} {...restProps}>
-      {children}
-    </Container>
-  );
+export const Flex: React.FC<BaseProps> = ({ children, ...restProps }) => {
+  return <Container {...restProps}>{children}</Container>;
 };
 
 const Container = styled.div`
@@ -20,5 +13,3 @@ const Container = styled.div`
   justify-content: center;
   font-family: Arial;
 `;
-
-export default Flex;

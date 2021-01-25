@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Buttons from "./Buttons";
 
 import TextDisplay from "./TextDisplay";
 
@@ -7,6 +8,7 @@ export default function Main() {
   return (
     <Container>
       <TextDisplay />
+      <Buttons />
     </Container>
   );
 }

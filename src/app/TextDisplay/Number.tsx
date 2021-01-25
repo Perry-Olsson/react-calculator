@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import Text from "../../components/Text";
-import Flex from "../../components/Flex";
+import { Flex, Text } from "../../components";
 
 const Number: React.FC = () => {
   return (
     <Container>
-      <Text value="hello" />
+      <Text value="hello" size="3rem" />
     </Container>
   );
 };

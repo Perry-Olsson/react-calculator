@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Flex from "../../components/Flex";
+import { Flex } from "../../components";
 
 export const StyledContainer = styled(Flex)`
   justify-content: flex-end;

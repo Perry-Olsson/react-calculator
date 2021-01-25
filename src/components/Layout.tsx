@@ -1,4 +1,3 @@
-import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,16 +13,5 @@ export const Layout: React.FC<{
   children: React.ReactNode;
   style?: React.CSSProperties;
 }> = ({ children, style }) => {
-  return (
-    <Container style={style}>
-      <div>
-        <Link to="/">home</Link>
-        {"  "}
-        <Link to="/about/">about</Link>
-        {"  "}
-        <Link to="/contact/">contact</Link>
-      </div>
-      {children}
-    </Container>
-  );
+  return <Container style={style}>{children}</Container>;
 };

@@ -1,12 +1,11 @@
 import React from "react";
 
-import { Layout, Header } from "../components";
+import { Layout } from "../components";
 import Main from "../app/main";
 
 export default function home() {
   return (
-    <Layout style={{ border: "solid" }}>
-      <Header text="Home" />
+    <Layout>
       <Main />
     </Layout>
   );

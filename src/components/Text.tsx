@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { TextBoxProps, TextProps } from "./types";
 
-const Text: React.FC<{ value: React.ReactText }> = ({ value }) => {
-  return <Container>{value}</Container>;
+export const Text: React.FC<TextProps> = ({ value, size, ...restProps }) => {
+  return (
+    <TextBox size={size} {...restProps}>
+      {value}
+    </TextBox>
+  );
 };
 
-const Container = styled.p`
+const TextBox = styled.p<TextBoxProps>`
+  font-size: ${props => (props.size ? props.size : "2rem")};
   font-family: Arial, Helvetica, sans-serif;
+  color: inherit;
 `;
-
-export default Text;
