@@ -7,9 +7,7 @@ import { ButtonProps } from "../types";
 export const DigitButton: React.FC<ButtonProps> = ({ value }) => {
   const dispatch = useOperationDispatch();
 
-  const handleClick = () => {
-    dispatch(numberPress(value));
-  };
+  const handleClick = () => dispatch(numberPress(value));
 
   return (
     <Button onClick={handleClick}>

@@ -1,15 +1,14 @@
+import { initialOperationState } from "../../../constants";
 import { ActionHandler, NumberPress, OperatorPress, State } from "../types";
-import { changeOperator, updateOperation } from "./helpers";
+import {
+  appendOperation,
+  changeOperator,
+  appendCurrentNumber,
+  updateOperation,
+} from "./helpers";
 
-export const handleNumberPress: ActionHandler<NumberPress> = (
-  state,
-  action
-) => {
-  return {
-    ...state,
-    currentNumber: `${state.currentNumber}${action.payload}`,
-  };
-};
+export const handleNumberPress: ActionHandler<NumberPress> = (state, action) =>
+  appendCurrentNumber(state, action);
 
 export const handleOperatorPress: ActionHandler<OperatorPress> = (
   state,
@@ -19,17 +18,20 @@ export const handleOperatorPress: ActionHandler<OperatorPress> = (
   else return changeOperator(state, action);
 };
 
-export const handleAllClearPress = (): State => {
-  return {
-    operation: [],
-    previousOperation: "",
-    currentNumber: "",
-  };
-};
+export const handleAllClearPress = (): State => initialOperationState;
 
-export const handleClearPress = (state: State): State => {
-  return {
-    ...state,
-    currentNumber: "",
-  };
-};
+export const handleClearPress = (state: State): State => ({
+  ...state,
+  currentNumber: "",
+});
+
+export const handleBackspacePress = (state: State): State => ({
+  ...state,
+  currentNumber: state.currentNumber.slice(0, -1),
+});
+
+export const handleEqualsPress = (state: State): State => ({
+  operation: appendOperation(state, [state.currentNumber, "=", "answer"]),
+  previousOperation: "=",
+  currentNumber: "answer",
+});

@@ -9,9 +9,7 @@ import {
 export const AllClear: React.FC = () => {
   const dispatch = useOperationDispatch();
 
-  const handleClick = () => {
-    dispatch(allClearPress());
-  };
+  const handleClick = () => dispatch(allClearPress());
 
   return (
     <Button onClick={handleClick}>

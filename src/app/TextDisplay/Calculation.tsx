@@ -11,7 +11,7 @@ const Calculation: React.FC = () => {
   return (
     <Container>
       <TextBox>
-        <Text value={operation.join(" ")} size="2.2rem" />
+        <Text value={operation.join(" ")} size="2rem" />
       </TextBox>
     </Container>
   );

@@ -10,9 +10,7 @@ import { ButtonProps } from "../types";
 export const OperatorButton: React.FC<ButtonProps> = ({ value }) => {
   const dispatch = useOperationDispatch();
 
-  const handleClick = () => {
-    dispatch(operatorPress(value));
-  };
+  const handleClick = () => dispatch(operatorPress(value));
 
   return (
     <Button onClick={handleClick}>

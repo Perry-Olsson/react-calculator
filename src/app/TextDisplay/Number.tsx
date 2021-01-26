@@ -9,7 +9,7 @@ const Number: React.FC = () => {
 
   return (
     <Container>
-      <Text value={currentNumber} size="3rem" />
+      <Text value={currentNumber} size="4rem" />
     </Container>
   );
 };
@@ -19,7 +19,6 @@ const Container = styled(Flex)`
   justify-content: flex-end;
   margin: 0;
   padding: 0 15px;
-  font-size: 3rem;
 `;
 
 export default Number;

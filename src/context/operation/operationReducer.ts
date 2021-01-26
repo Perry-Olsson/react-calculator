@@ -1,7 +1,9 @@
 import { Action, State } from "./types";
 import {
   handleAllClearPress,
+  handleBackspacePress,
   handleClearPress,
+  handleEqualsPress,
   handleNumberPress,
   handleOperatorPress,
 } from "./utils";
@@ -16,5 +18,9 @@ export const operationReducer = (state: State, action: Action): State => {
       return handleAllClearPress();
     case "CLEAR_PRESS":
       return handleClearPress(state);
+    case "BACKSPACE_PRESS":
+      return handleBackspacePress(state);
+    case "EQUALS_PRESS":
+      return handleEqualsPress(state);
   }
 };

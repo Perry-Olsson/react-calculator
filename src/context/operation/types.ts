@@ -1,4 +1,10 @@
-export type Action = NumberPress | OperatorPress | AllClearPress | ClearPress;
+export type Action =
+  | NumberPress
+  | OperatorPress
+  | AllClearPress
+  | ClearPress
+  | BackSpacePress
+  | EqualsPress;
 
 export interface NumberPress {
   type: "NUMBER_PRESS";
@@ -16,6 +22,14 @@ export interface AllClearPress {
 
 export interface ClearPress {
   type: "CLEAR_PRESS";
+}
+
+export interface BackSpacePress {
+  type: "BACKSPACE_PRESS";
+}
+
+export interface EqualsPress {
+  type: "EQUALS_PRESS";
 }
 
 export type ActionHandler<T = Action> = (state: State, action: T) => State;

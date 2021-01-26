@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
+import { initialOperationState } from "../../constants";
 
 import { operationReducer } from "./operationReducer";
 import { Dispatch, OperationProviderProps, State } from "./types";
@@ -9,7 +10,7 @@ const OperationDispatchContext = createContext<Dispatch | undefined>(undefined);
 export const OperationProvider: React.FC<OperationProviderProps> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(operationReducer, initialState);
+  const [state, dispatch] = useReducer(operationReducer, initialOperationState);
 
   return (
     <OperationStateContext.Provider value={state}>
@@ -35,10 +36,4 @@ export const useOperationDispatch = () => {
       "useOperationDispatch must be used within OperationProvider"
     );
   return context;
-};
-
-const initialState = {
-  operation: [],
-  previousOperation: "",
-  currentNumber: "",
 };
