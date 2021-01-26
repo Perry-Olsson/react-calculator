@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Flex, Text } from "../../components";
+import { useOperationState } from "../../context/operation";
 
 import { StyledContainer } from "./StyledContainer";
 
 const Calculation: React.FC = () => {
+  const { operation } = useOperationState();
+
   return (
     <Container>
       <TextBox>
-        <Text value="hello" size="2.2rem" />
+        <Text value={operation.join(" ")} size="2.2rem" />
       </TextBox>
     </Container>
   );

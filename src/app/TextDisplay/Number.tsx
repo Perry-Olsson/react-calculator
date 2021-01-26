@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 import { Flex, Text } from "../../components";
+import { useOperationState } from "../../context/operation";
 
 const Number: React.FC = () => {
+  const { currentNumber } = useOperationState();
+
   return (
     <Container>
-      <Text value="hello" size="3rem" />
+      <Text value={currentNumber} size="3rem" />
     </Container>
   );
 };

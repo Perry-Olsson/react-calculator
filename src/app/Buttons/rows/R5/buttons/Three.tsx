@@ -1,11 +1,5 @@
 import React from "react";
 
-import { Button, Text } from "../../../../../components";
+import { DigitButton } from "../../DigitButton";
 
-export const Three: React.FC = () => {
-  return (
-    <Button>
-      <Text value="3" />
-    </Button>
-  );
-};
+export const Three: React.FC = () => <DigitButton value="3" />;

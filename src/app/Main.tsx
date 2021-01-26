@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useOperationState } from "../context/operation";
 import Buttons from "./Buttons";
 
 import TextDisplay from "./TextDisplay";
 
 export default function Main() {
+  const state = useOperationState();
+  console.log(state);
+
   return (
     <Container>
       <TextDisplay />

@@ -1,11 +1,4 @@
 import React from "react";
+import { OperatorButton } from "../../OperatorButton";
 
-import { Button, Text } from "../../../../../components";
-
-export const Add: React.FC = () => {
-  return (
-    <Button>
-      <Text value="+" />
-    </Button>
-  );
-};
+export const Add: React.FC = () => <OperatorButton value="+" />;

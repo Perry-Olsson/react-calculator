@@ -1,12 +1,15 @@
 import React from "react";
 
 import { Layout } from "../components";
-import Main from "../app/main";
+import Main from "../app/Main";
+import { OperationProvider } from "../context/operation";
 
 export default function home() {
   return (
     <Layout>
-      <Main />
+      <OperationProvider>
+        <Main />
+      </OperationProvider>
     </Layout>
   );
 }

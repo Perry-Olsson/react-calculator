@@ -10,6 +10,7 @@ export const OperationProvider: React.FC<OperationProviderProps> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(operationReducer, initialState);
+
   return (
     <OperationStateContext.Provider value={state}>
       <OperationDispatchContext.Provider value={dispatch}>
@@ -39,5 +40,5 @@ export const useOperationDispatch = () => {
 const initialState = {
   operation: [],
   previousOperation: "",
-  currentNumber: null,
+  currentNumber: "",
 };

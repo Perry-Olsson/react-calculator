@@ -1,6 +1,7 @@
 export interface BaseProps {
   children?: React.ReactNode;
-  restProps?: React.HTMLAttributes<any>;
+  onClick?: () => void;
+  restProps?: any;
 }
 
 export interface TextProps {

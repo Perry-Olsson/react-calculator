@@ -1,11 +1,7 @@
 import React from "react";
 
-import { Button, Text } from "../../../../../components";
+import { DigitButton } from "../../DigitButton";
 
 export const Eight: React.FC = () => {
-  return (
-    <Button>
-      <Text value="8" />
-    </Button>
-  );
+  return <DigitButton value="8" />;
 };
