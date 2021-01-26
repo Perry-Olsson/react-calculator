@@ -32,6 +32,6 @@ export const handleBackspacePress = (state: State): State => ({
 
 export const handleEqualsPress = (state: State): State => ({
   operation: appendOperation(state, [state.currentNumber, "=", "answer"]),
-  previousOperation: "=",
+  previousOperation: "EQUALS",
   currentNumber: "answer",
 });

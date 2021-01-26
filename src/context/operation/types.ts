@@ -36,9 +36,16 @@ export type ActionHandler<T = Action> = (state: State, action: T) => State;
 
 export interface State {
   operation: Array<number | string>;
-  previousOperation: string;
+  previousOperation: OperationCodes;
   currentNumber: string;
 }
+
+type OperationCodes =
+  | "CHAINED_OPERATOR"
+  | "INITIAL_OPERATOR"
+  | "DIGIT"
+  | "EQUALS"
+  | "";
 
 export type Dispatch = (action: Action) => void;
 
