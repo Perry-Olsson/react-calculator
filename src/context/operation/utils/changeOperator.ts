@@ -1,4 +1,4 @@
-import { ActionHandler, OperatorPress } from "../../types";
+import { ActionHandler, OperatorPress } from "../types";
 
 export const changeOperator: ActionHandler<OperatorPress> = (state, action) => {
   return {

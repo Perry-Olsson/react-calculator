@@ -6,7 +6,7 @@ import {
   handleEqualsPress,
   handleNumberPress,
   handleOperatorPress,
-} from "./utils";
+} from "./operationHandlers";
 
 export const operationReducer = (state: State, action: Action): State => {
   switch (action.type) {

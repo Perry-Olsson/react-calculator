@@ -40,7 +40,7 @@ export interface State {
   currentNumber: string;
 }
 
-type OperationCodes =
+export type OperationCodes =
   | "CHAINED_OPERATOR"
   | "INITIAL_OPERATOR"
   | "DIGIT"

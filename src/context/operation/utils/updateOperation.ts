@@ -1,4 +1,4 @@
-import { ActionHandler, OperatorPress } from "../../types";
+import { ActionHandler, OperatorPress } from "../types";
 import { appendOperation } from "./appendOperation";
 
 export const updateOperation: ActionHandler<OperatorPress> = (
