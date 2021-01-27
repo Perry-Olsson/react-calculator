@@ -38,6 +38,12 @@ export interface State {
   operation: Array<number | string>;
   previousOperation: OperationCodes;
   currentNumber: string;
+  textBox: TextBoxDimensions;
+}
+
+interface TextBoxDimensions {
+  height: number;
+  width: number;
 }
 
 export type OperationCodes =
@@ -45,6 +51,7 @@ export type OperationCodes =
   | "INITIAL_OPERATOR"
   | "DIGIT"
   | "EQUALS"
+  | "CLEAR"
   | "";
 
 export type Dispatch = (action: Action) => void;

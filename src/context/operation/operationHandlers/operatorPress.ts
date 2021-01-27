@@ -30,6 +30,7 @@ export const updateOperation: ActionHandler<OperatorPress> = (
     : "CHAINED_OPERATOR";
 
   return {
+    ...state,
     operation: appendOperation(state, [state.currentNumber, action.payload]),
     previousOperation,
     currentNumber: isInitialOperation ? "" : "answer",
