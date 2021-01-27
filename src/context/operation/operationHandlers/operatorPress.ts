@@ -1,5 +1,5 @@
 import { ActionHandler, OperationCodes, OperatorPress } from "../types";
-import { changeOperator, updateOperation } from "../utils";
+import { appendOperation, changeOperator } from "../utils";
 
 export const handleOperatorPress: ActionHandler<OperatorPress> = (
   state,
@@ -17,4 +17,21 @@ export const isOperatorChange = (previousOperation: OperationCodes) => {
   )
     return true;
   else return false;
+};
+
+export const updateOperation: ActionHandler<OperatorPress> = (
+  state,
+  action
+) => {
+  const isInitialOperation = state.operation.length ? false : true;
+
+  const previousOperation = isInitialOperation
+    ? "INITIAL_OPERATOR"
+    : "CHAINED_OPERATOR";
+
+  return {
+    operation: appendOperation(state, [state.currentNumber, action.payload]),
+    previousOperation,
+    currentNumber: isInitialOperation ? "" : "answer",
+  };
 };
