@@ -7,11 +7,10 @@ import { StyledContainer } from "./StyledContainer";
 
 const Calculation: React.FC = () => {
   const { operation } = useOperationState();
-  const textBoxRef = useRef<HTMLDivElement>(null);
 
   return (
     <Container>
-      <TextBox ref={textBoxRef}>
+      <TextBox id="calculation-text-box">
         <Text value={operation.join(" ")} size="2rem" />
       </TextBox>
     </Container>
