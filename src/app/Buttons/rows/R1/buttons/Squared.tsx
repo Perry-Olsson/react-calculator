@@ -1,11 +1,12 @@
 import React from "react";
 
-import { Button, Text } from "../../../../../components";
+import { Button } from "../../../../../components";
+import { SquaredIcon } from "../SquaredIcon";
 
 export const Squared: React.FC = () => {
   return (
     <Button>
-      <Text value="x2" />
+      <SquaredIcon />
     </Button>
   );
 };
