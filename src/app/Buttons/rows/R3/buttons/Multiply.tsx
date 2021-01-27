@@ -1,11 +1,5 @@
 import React from "react";
 
-import { Button, Text } from "../../../../../components";
+import { OperatorButton } from "../../OperatorButton";
 
-export const Multiply: React.FC = () => {
-  return (
-    <Button>
-      <Text value="x" />
-    </Button>
-  );
-};
+export const Multiply: React.FC = () => <OperatorButton value="x" />;

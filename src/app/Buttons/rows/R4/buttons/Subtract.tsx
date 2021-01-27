@@ -1,11 +1,5 @@
 import React from "react";
 
-import { Button, Text } from "../../../../../components";
+import { OperatorButton } from "../../OperatorButton";
 
-export const Subtract: React.FC = () => {
-  return (
-    <Button>
-      <Text value="-" />
-    </Button>
-  );
-};
+export const Subtract: React.FC = () => <OperatorButton value="-" />;
