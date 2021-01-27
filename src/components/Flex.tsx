@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { theme } from "./theme";
 import { BaseProps } from "./types";
 
 export const Flex: React.FC<BaseProps> = ({ children, ...restProps }) => {
@@ -11,5 +12,5 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-family: Arial;
+  font-family: ${theme.fontFamily};
 `;

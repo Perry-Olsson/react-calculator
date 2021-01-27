@@ -14,6 +14,6 @@ export const Text: React.FC<TextProps> = ({ value, size, ...restProps }) => {
 
 const TextBox = styled.p<TextBoxProps>`
   font-size: ${props => (props.size ? props.size : theme.fontSize)};
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${theme.fontFamily};
   color: inherit;
 `;
