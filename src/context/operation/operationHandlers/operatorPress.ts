@@ -1,19 +1,22 @@
-import { ActionHandler, OperationCodes, OperatorPress } from "../types";
+import { ActionHandler, OperatorPress, State } from "../types";
 import { appendOperation, changeOperator } from "../utils";
 
 export const handleOperatorPress: ActionHandler<OperatorPress> = (
   state,
   action
 ) => {
-  if (isOperatorChange(state.previousOperation))
-    return changeOperator(state, action);
+  if (isOperatorChange(state)) return changeOperator(state, action);
   else return updateOperation(state, action);
 };
 
-export const isOperatorChange = (previousOperation: OperationCodes) => {
+export const isOperatorChange = ({
+  previousOperation,
+  currentNumber,
+}: State) => {
   if (
     previousOperation === "CHAINED_OPERATOR" ||
-    previousOperation === "INITIAL_OPERATOR"
+    previousOperation === "INITIAL_OPERATOR" ||
+    (previousOperation === "BACKSPACE" && !currentNumber)
   )
     return true;
   else return false;

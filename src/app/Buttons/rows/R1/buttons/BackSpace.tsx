@@ -5,12 +5,21 @@ import { Button } from "../../../../../components";
 import {
   backSpacePress,
   useOperationDispatch,
+  useOperationState,
 } from "../../../../../context/operation";
 
 export const BackSpace: React.FC = () => {
+  const state = useOperationState();
   const dispatch = useOperationDispatch();
 
-  const handleClick = () => dispatch(backSpacePress());
+  const handleClick = () => {
+    if (
+      state.previousOperation === "DECIMAL" ||
+      state.previousOperation === "DIGIT" ||
+      state.previousOperation === "BACKSPACE"
+    )
+      dispatch(backSpacePress());
+  };
 
   return (
     <Button onClick={handleClick}>
