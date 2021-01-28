@@ -6,8 +6,7 @@ import {
   useOperationDispatch,
   useOperationState,
 } from "../../../context/operation";
-import { State } from "../../../context/operation/types";
-import { ButtonProps } from "../types";
+import { ButtonProps, PressValidator } from "../types";
 
 export const DigitButton: React.FC<ButtonProps> = ({ value, ...restProps }) => {
   const dispatch = useOperationDispatch();
@@ -24,7 +23,7 @@ export const DigitButton: React.FC<ButtonProps> = ({ value, ...restProps }) => {
   );
 };
 
-const isLeadingZero = (state: State, value: string) => {
+const isLeadingZero: PressValidator<string> = (state, value) => {
   if (state.previousOperation !== "DIGIT" && value === "0") return true;
   return false;
 };

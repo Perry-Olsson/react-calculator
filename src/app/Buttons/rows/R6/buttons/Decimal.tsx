@@ -4,13 +4,16 @@ import { Button, Text } from "../../../../../components";
 import {
   decimalPress,
   useOperationDispatch,
+  useOperationState,
 } from "../../../../../context/operation";
+import { PressValidator } from "../../../types";
 
 export const Decimal: React.FC = () => {
   const dispatch = useOperationDispatch();
+  const state = useOperationState();
 
   const handleClick = () => {
-    dispatch(decimalPress());
+    if (!hasDecimal(state)) dispatch(decimalPress());
   };
 
   return (
@@ -18,4 +21,9 @@ export const Decimal: React.FC = () => {
       <Text value="." />
     </Button>
   );
+};
+
+const hasDecimal: PressValidator = ({ currentNumber }) => {
+  if (currentNumber.includes(".")) return true;
+  return false;
 };
