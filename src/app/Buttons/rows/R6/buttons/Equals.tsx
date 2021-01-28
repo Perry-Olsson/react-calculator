@@ -6,14 +6,14 @@ import {
   useOperationDispatch,
   useOperationState,
 } from "../../../../../context/operation";
+import { State } from "../../../../../context/operation/types";
 
 export const Equals: React.FC = () => {
-  const { currentNumber, previousOperation } = useOperationState();
+  const state = useOperationState();
   const dispatch = useOperationDispatch();
 
   const handleClick = () => {
-    if (currentNumber && previousOperation !== "CHAINED_OPERATOR")
-      dispatch(equalsPress());
+    if (isValidOperation(state)) dispatch(equalsPress());
   };
 
   return (
@@ -21,4 +21,9 @@ export const Equals: React.FC = () => {
       <Text value="=" />
     </Button>
   );
+};
+
+const isValidOperation = ({ currentNumber, previousOperation }: State) => {
+  if (currentNumber && previousOperation !== "CHAINED_OPERATOR") return true;
+  return false;
 };
