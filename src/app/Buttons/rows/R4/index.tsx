@@ -1,6 +1,6 @@
 import React from "react";
 
-import RowContainer from "../RowContainer";
+import RowContainer from "../../components/RowContainer";
 import { Five, Four, Six, Subtract } from "./buttons";
 
 export const R4: React.FC = () => {

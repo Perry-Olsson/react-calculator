@@ -1,6 +1,6 @@
 import React from "react";
 
-import RowContainer from "../RowContainer";
+import RowContainer from "../../components/RowContainer";
 import { Squared, AllClear, Clear, BackSpace } from "./buttons";
 
 export const R1: React.FC = () => {
