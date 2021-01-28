@@ -4,3 +4,4 @@ export * from "./allClearPress";
 export * from "./clearPress";
 export * from "./backspacePress";
 export * from "./equalsPress";
+export * from "./decimalPress";

@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Button, Text } from "../../../../../components";
+import { DigitButton } from "../../DigitButton";
 
 export const Zero: React.FC = () => {
-  return (
-    <StyledButton>
-      <Text value="0" />
-    </StyledButton>
-  );
+  return <StyledDigitButton value="0" />;
 };
 
-const StyledButton = styled(Button)`
+const StyledDigitButton = styled(DigitButton)`
   grid-column: 1/3;
 `;

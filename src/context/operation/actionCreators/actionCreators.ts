@@ -5,6 +5,7 @@ import {
   ClearPress,
   BackSpacePress,
   EqualsPress,
+  DecimalPress,
 } from "../types";
 
 export const numberPress = (payload: string): NumberPress => ({
@@ -27,6 +28,11 @@ export const clearPress = (): ClearPress => ({
 
 export const backSpacePress = (): BackSpacePress => ({
   type: "BACKSPACE_PRESS",
+});
+
+export const decimalPress = (): DecimalPress => ({
+  type: "DECIMAL_PRESS",
+  payload: ".",
 });
 
 export const equalsPress = (): EqualsPress => ({

@@ -3,6 +3,7 @@ import {
   handleAllClearPress,
   handleBackspacePress,
   handleClearPress,
+  handleDecimalPress,
   handleEqualsPress,
   handleNumberPress,
   handleOperatorPress,
@@ -22,5 +23,7 @@ export const operationReducer = (state: State, action: Action): State => {
       return handleBackspacePress(state);
     case "EQUALS_PRESS":
       return handleEqualsPress(state);
+    case "DECIMAL_PRESS":
+      return handleDecimalPress(state, action);
   }
 };
