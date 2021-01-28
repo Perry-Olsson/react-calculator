@@ -7,13 +7,17 @@ import {
   useOperationState,
 } from "../../../context/operation";
 import { ButtonProps, PressValidator } from "../types";
+import { clearAllAfterEquals } from "../utils/clearAllAfterEquals";
 
 export const DigitButton: React.FC<ButtonProps> = ({ value, ...restProps }) => {
   const dispatch = useOperationDispatch();
   const state = useOperationState();
 
   const handleClick = () => {
-    if (!isLeadingZero(state, value)) dispatch(numberPress(value));
+    if (!isLeadingZero(state, value)) {
+      clearAllAfterEquals(state, dispatch);
+      dispatch(numberPress(value));
+    }
   };
 
   return (
@@ -24,6 +28,11 @@ export const DigitButton: React.FC<ButtonProps> = ({ value, ...restProps }) => {
 };
 
 const isLeadingZero: PressValidator<string> = (state, value) => {
-  if (state.previousOperation !== "DIGIT" && value === "0") return true;
+  if (
+    state.previousOperation !== "DIGIT" &&
+    state.previousOperation !== "DECIMAL" &&
+    value === "0"
+  )
+    return true;
   return false;
 };

@@ -7,13 +7,17 @@ import {
   useOperationState,
 } from "../../../../../context/operation";
 import { PressValidator } from "../../../types";
+import { clearAllAfterEquals } from "../../../utils/clearAllAfterEquals";
 
 export const Decimal: React.FC = () => {
   const dispatch = useOperationDispatch();
   const state = useOperationState();
 
   const handleClick = () => {
-    if (!hasDecimal(state)) dispatch(decimalPress());
+    if (!hasDecimal(state)) {
+      clearAllAfterEquals(state, dispatch);
+      dispatch(decimalPress());
+    }
   };
 
   return (

@@ -22,7 +22,7 @@ export const OperationProvider: React.FC<OperationProviderProps> = ({
 };
 
 export const useOperationState = () => {
-  const context = React.useContext(OperationStateContext);
+  const context = useContext(OperationStateContext);
   if (context === undefined) {
     throw new Error("useOperationState must be used within OperationProvider");
   }

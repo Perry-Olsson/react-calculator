@@ -6,15 +6,19 @@ import {
   useOperationDispatch,
   useOperationState,
 } from "../../../context/operation";
+import { State } from "../../../context/operation/types";
 import { ButtonProps } from "../types";
+import { disableAfterDecimal } from "../utils/disableAfterDecimal";
 
 export const OperatorButton: React.FC<ButtonProps> = ({ value }) => {
   const dispatch = useOperationDispatch();
-  const { previousOperation } = useOperationState();
+  const state = useOperationState();
 
-  const handleClick = () => {
+  const dispatcher = ({ previousOperation }: State) => {
     if (previousOperation) dispatch(operatorPress(value));
   };
+
+  const handleClick = () => disableAfterDecimal(state, dispatcher);
 
   return (
     <Button onClick={handleClick}>
