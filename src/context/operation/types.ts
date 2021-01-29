@@ -48,12 +48,7 @@ export interface State {
   operation: Array<number | string>;
   previousEvent: EventCodes;
   currentNumber: string;
-  textBox: TextBoxDimensions;
-}
-
-interface TextBoxDimensions {
-  height: number;
-  width: number;
+  validations: any[];
 }
 
 export type EventCodes =

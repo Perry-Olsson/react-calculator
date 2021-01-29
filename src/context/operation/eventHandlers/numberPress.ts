@@ -8,4 +8,5 @@ export const handleNumberPress: ActionHandler<NumberPress> = (
   ...state,
   previousEvent: "DIGIT",
   currentNumber: appendCurrentNumber(state, action.payload),
+  validations: [],
 });

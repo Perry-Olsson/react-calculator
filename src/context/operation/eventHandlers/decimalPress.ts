@@ -12,7 +12,6 @@ export const handleDecimalPress = (state: State): State => {
   };
 };
 
-//TODO
 const isLeadingDecimal = ({ previousEvent }: State) => {
   if (previousEvent === "DIGIT") return false;
   return true;
