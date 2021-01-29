@@ -9,16 +9,11 @@ import {
 } from "../../../../../context/operation";
 
 export const BackSpace: React.FC = () => {
-  const state = useOperationState();
+  const { previousEvent } = useOperationState();
   const dispatch = useOperationDispatch();
 
   const handleClick = () => {
-    if (
-      state.previousEvent === "DECIMAL" ||
-      state.previousEvent === "DIGIT" ||
-      state.previousEvent === "BACKSPACE"
-    )
-      dispatch(backSpacePress());
+    if (previousEvent === "BACKSPACE") dispatch(backSpacePress());
   };
 
   return (

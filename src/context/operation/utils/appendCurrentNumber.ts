@@ -9,10 +9,13 @@ export const appendCurrentNumber = (
   return currentNumber;
 };
 
-const clearPreviousAnswer = (state: State, action: NumDecimal) => {
-  return state.previousEvent === "CHAINED_OPERATOR"
+const clearPreviousAnswer = (
+  { previousEvent, currentNumber }: State,
+  action: NumDecimal
+) => {
+  return previousEvent === "CHAINED_OPERATOR"
     ? action.payload
-    : `${state.currentNumber}${action.payload}`;
+    : `${currentNumber}${action.payload}`;
 };
 
 type NumDecimal = NumberPress | DecimalPress;

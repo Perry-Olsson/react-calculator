@@ -1,7 +1,7 @@
 import { State } from "../types";
 
-export const appendOperation = (state: State, payload: string[]) => {
-  return state.operation.concat(trimZeros(payload));
+export const appendOperation = ({ operation }: State, payload: string[]) => {
+  return operation.concat(trimZeros(payload));
 };
 
 const trimZeros = (payload: string[]) => {
