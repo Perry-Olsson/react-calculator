@@ -10,8 +10,8 @@ import { PressValidator } from "../../../types";
 import { clearAllAfterEquals } from "../../../utils/clearAllAfterEquals";
 
 export const Decimal: React.FC = () => {
-  const dispatch = useOperationDispatch();
   const state = useOperationState();
+  const dispatch = useOperationDispatch();
 
   const handleClick = () => {
     if (!hasDecimal(state)) {

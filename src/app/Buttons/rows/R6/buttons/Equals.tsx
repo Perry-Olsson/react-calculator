@@ -8,7 +8,7 @@ import {
 } from "../../../../../context/operation";
 import { State } from "../../../../../context/operation/types";
 import { PressValidator } from "../../../types";
-import { disableAfterDecimal } from "../../../utils/disableAfterDecimal";
+import { disableIfInvalid } from "../../../utils/disableAfterDecimal";
 
 export const Equals: React.FC = () => {
   const state = useOperationState();
@@ -18,7 +18,7 @@ export const Equals: React.FC = () => {
     if (isValidOperation(state)) dispatch(equalsPress());
   };
 
-  const handleClick = () => disableAfterDecimal(state, dispatcher);
+  const handleClick = () => disableIfInvalid(state, dispatcher);
 
   return (
     <Button onClick={handleClick}>
