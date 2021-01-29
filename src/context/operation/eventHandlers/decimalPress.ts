@@ -1,11 +1,8 @@
-import { ActionHandler, DecimalPress, State } from "../types";
+import { State } from "../types";
 import { appendCurrentNumber } from "../utils";
 
-export const handleDecimalPress: ActionHandler<DecimalPress> = (
-  state,
-  action
-) => {
-  let currentNumber = appendCurrentNumber(state, action);
+export const handleDecimalPress = (state: State): State => {
+  let currentNumber = appendCurrentNumber(state, ".");
   if (isLeadingDecimal(state)) currentNumber = prependZero(currentNumber);
 
   return {
@@ -15,11 +12,13 @@ export const handleDecimalPress: ActionHandler<DecimalPress> = (
   };
 };
 
+//TODO
 const isLeadingDecimal = ({ previousEvent }: State) => {
   if (previousEvent === "DIGIT") return false;
   return true;
 };
 
 const prependZero = (currentNumber: string) => {
-  return `0${currentNumber}`;
+  if (currentNumber[0] === "-") return "-0.";
+  return "0.";
 };

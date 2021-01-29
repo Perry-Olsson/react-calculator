@@ -1,21 +1,8 @@
-import { DecimalPress, NumberPress, State } from "../types";
+import { State } from "../types";
+import { clearPreviousAnswer } from "./clearPreviousAnswer";
 
-export const appendCurrentNumber = (
-  state: State,
-  action: NumDecimal
-): string => {
-  const currentNumber = clearPreviousAnswer(state, action);
+export const appendCurrentNumber = (state: State, value: string): string => {
+  const currentNumber = `${clearPreviousAnswer(state)}${value}`;
 
   return currentNumber;
 };
-
-const clearPreviousAnswer = (
-  { previousEvent, currentNumber }: State,
-  action: NumDecimal
-) => {
-  return previousEvent === "CHAINED_OPERATOR"
-    ? action.payload
-    : `${currentNumber}${action.payload}`;
-};
-
-type NumDecimal = NumberPress | DecimalPress;

@@ -4,5 +4,9 @@ export const disableAfterDecimal = (
   state: State,
   handleClick: (state: State) => void
 ) => {
-  if (state.previousEvent !== "DECIMAL") handleClick(state);
+  if (
+    state.previousEvent !== "DECIMAL" &&
+    !(state.previousEvent === "SIGN" && state.currentNumber[0] === "-")
+  )
+    handleClick(state);
 };

@@ -8,6 +8,7 @@ import {
   handleNumberPress,
   handleOperatorPress,
 } from "./eventHandlers";
+import { handleSignPress } from "./eventHandlers/signPress";
 
 export const operationReducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -24,6 +25,8 @@ export const operationReducer = (state: State, action: Action): State => {
     case "EQUALS_PRESS":
       return handleEqualsPress(state);
     case "DECIMAL_PRESS":
-      return handleDecimalPress(state, action);
+      return handleDecimalPress(state);
+    case "SIGN_PRESS":
+      return handleSignPress(state);
   }
 };

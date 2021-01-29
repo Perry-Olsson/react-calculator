@@ -5,7 +5,8 @@ export type Action =
   | ClearPress
   | BackSpacePress
   | EqualsPress
-  | DecimalPress;
+  | DecimalPress
+  | SignPress;
 
 export interface NumberPress {
   type: "NUMBER_PRESS";
@@ -35,7 +36,10 @@ export interface EqualsPress {
 
 export interface DecimalPress {
   type: "DECIMAL_PRESS";
-  payload: ".";
+}
+
+export interface SignPress {
+  type: "SIGN_PRESS";
 }
 
 export type ActionHandler<T = Action> = (state: State, action: T) => State;
@@ -60,6 +64,7 @@ export type EventCodes =
   | "CLEAR"
   | "DECIMAL"
   | "BACKSPACE"
+  | "SIGN"
   | "";
 
 export type Dispatch = (action: Action) => void;

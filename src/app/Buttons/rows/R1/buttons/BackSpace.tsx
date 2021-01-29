@@ -13,7 +13,8 @@ export const BackSpace: React.FC = () => {
   const dispatch = useOperationDispatch();
 
   const handleClick = () => {
-    if (previousEvent === "BACKSPACE") dispatch(backSpacePress());
+    if (previousEvent !== "CHAINED_OPERATOR" && previousEvent !== "EQUALS")
+      dispatch(backSpacePress());
   };
 
   return (
