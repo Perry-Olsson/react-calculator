@@ -10,13 +10,13 @@ export const handleDecimalPress: ActionHandler<DecimalPress> = (
 
   return {
     ...state,
-    previousOperation: "DECIMAL",
+    previousEvent: "DECIMAL",
     currentNumber,
   };
 };
 
-const isLeadingDecimal = ({ previousOperation }: State) => {
-  if (previousOperation === "DIGIT") return false;
+const isLeadingDecimal = ({ previousEvent }: State) => {
+  if (previousEvent === "DIGIT") return false;
   return true;
 };
 

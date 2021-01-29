@@ -10,7 +10,7 @@ export const appendCurrentNumber = (
 };
 
 const clearPreviousAnswer = (state: State, action: NumDecimal) => {
-  return state.previousOperation === "CHAINED_OPERATOR"
+  return state.previousEvent === "CHAINED_OPERATOR"
     ? action.payload
     : `${state.currentNumber}${action.payload}`;
 };

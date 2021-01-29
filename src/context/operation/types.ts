@@ -42,7 +42,7 @@ export type ActionHandler<T = Action> = (state: State, action: T) => State;
 
 export interface State {
   operation: Array<number | string>;
-  previousOperation: OperationCodes;
+  previousEvent: EventCodes;
   currentNumber: string;
   textBox: TextBoxDimensions;
 }
@@ -52,7 +52,7 @@ interface TextBoxDimensions {
   width: number;
 }
 
-export type OperationCodes =
+export type EventCodes =
   | "CHAINED_OPERATOR"
   | "INITIAL_OPERATOR"
   | "DIGIT"

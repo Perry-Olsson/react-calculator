@@ -27,10 +27,7 @@ export const Equals: React.FC = () => {
   );
 };
 
-const isValidOperation: PressValidator = ({
-  currentNumber,
-  previousOperation,
-}) => {
-  if (currentNumber && previousOperation !== "CHAINED_OPERATOR") return true;
+const isValidOperation: PressValidator = ({ currentNumber, previousEvent }) => {
+  if (currentNumber && previousEvent !== "CHAINED_OPERATOR") return true;
   return false;
 };

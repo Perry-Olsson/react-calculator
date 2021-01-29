@@ -6,6 +6,6 @@ export const handleNumberPress: ActionHandler<NumberPress> = (
   action
 ) => ({
   ...state,
-  previousOperation: "DIGIT",
+  previousEvent: "DIGIT",
   currentNumber: appendCurrentNumber(state, action),
 });

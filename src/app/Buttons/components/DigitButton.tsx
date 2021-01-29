@@ -29,8 +29,8 @@ export const DigitButton: React.FC<ButtonProps> = ({ value, ...restProps }) => {
 
 const isLeadingZero: PressValidator<string> = (state, value) => {
   if (
-    state.previousOperation !== "DIGIT" &&
-    state.previousOperation !== "DECIMAL" &&
+    state.previousEvent !== "DIGIT" &&
+    state.previousEvent !== "DECIMAL" &&
     value === "0"
   )
     return true;

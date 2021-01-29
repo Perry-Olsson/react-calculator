@@ -14,8 +14,8 @@ export const OperatorButton: React.FC<ButtonProps> = ({ value }) => {
   const dispatch = useOperationDispatch();
   const state = useOperationState();
 
-  const dispatcher = ({ previousOperation }: State) => {
-    if (previousOperation) dispatch(operatorPress(value));
+  const dispatcher = ({ previousEvent }: State) => {
+    if (previousEvent) dispatch(operatorPress(value));
   };
 
   const handleClick = () => disableAfterDecimal(state, dispatcher);

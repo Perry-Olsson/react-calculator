@@ -14,9 +14,9 @@ export const BackSpace: React.FC = () => {
 
   const handleClick = () => {
     if (
-      state.previousOperation === "DECIMAL" ||
-      state.previousOperation === "DIGIT" ||
-      state.previousOperation === "BACKSPACE"
+      state.previousEvent === "DECIMAL" ||
+      state.previousEvent === "DIGIT" ||
+      state.previousEvent === "BACKSPACE"
     )
       dispatch(backSpacePress());
   };
