@@ -1,17 +1,13 @@
 import React from "react";
 
 import { Button, Text } from "../../../../../components";
-import {
-  signPress,
-  useOperationDispatch,
-} from "../../../../../context/operation";
+import { signPress } from "../../../../../context/operation";
+import { useValidateClick } from "../../../../../hooks/useValidateClick";
 
 export const Sign: React.FC = () => {
-  const dispatch = useOperationDispatch();
+  const validateClick = useValidateClick("SIGN");
 
-  const handleClick = () => {
-    dispatch(signPress());
-  };
+  const handleClick = () => validateClick(dispatch => dispatch(signPress()));
 
   return (
     <Button onClick={handleClick}>
