@@ -1,12 +1,14 @@
 import { State } from "../../../context/operation/types";
 
-export const disableAfterDecimal = (
+export const disableIfInvalid = (
   state: State,
   handleClick: (state: State) => void
 ) => {
+  const lastIndex = state.currentNumber.length - 1;
+
   if (
-    state.previousEvent !== "DECIMAL" &&
-    !(state.previousEvent === "SIGN" && state.currentNumber[0] === "-")
+    state.currentNumber[lastIndex] !== "." &&
+    state.currentNumber[lastIndex] !== "-"
   )
     handleClick(state);
 };
