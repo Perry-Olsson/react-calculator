@@ -11,8 +11,7 @@ export const handleOperatorPress: ActionHandler<OperatorPress> = (
 
 const isOperatorChange = ({ previousEvent, currentNumber }: State) => {
   if (
-    previousEvent === "CHAINED_OPERATOR" ||
-    previousEvent === "INITIAL_OPERATOR" ||
+    previousEvent === "OPERATOR" ||
     ((previousEvent === "BACKSPACE" || previousEvent === "SIGN") &&
       !currentNumber)
   )
@@ -21,18 +20,14 @@ const isOperatorChange = ({ previousEvent, currentNumber }: State) => {
 };
 
 const updateOperation: ActionHandler<OperatorPress> = (state, action) => {
-  const isInitialOperation = state.operation.length ? false : true;
-
-  const previousEvent = isInitialOperation
-    ? "INITIAL_OPERATOR"
-    : "CHAINED_OPERATOR";
-
   const payload = [state.currentNumber, action.payload];
+
+  const currentNumber = state.operation.length > 1 ? "answer" : "";
 
   return {
     ...state,
     operation: appendOperation(state, payload),
-    previousEvent,
-    currentNumber: isInitialOperation ? "" : "answer",
+    previousEvent: "OPERATOR",
+    currentNumber,
   };
 };

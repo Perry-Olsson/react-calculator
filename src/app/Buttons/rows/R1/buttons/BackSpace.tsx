@@ -2,20 +2,16 @@ import React from "react";
 import path from "path";
 
 import { Button } from "../../../../../components";
-import {
-  backSpacePress,
-  useOperationDispatch,
-  useOperationState,
-} from "../../../../../context/operation";
+import { backSpacePress } from "../../../../../context/operation";
+import { useValidateClick } from "../../../../../hooks/useValidateClick";
 
 export const BackSpace: React.FC = () => {
-  const { previousEvent } = useOperationState();
-  const dispatch = useOperationDispatch();
+  const validateClick = useValidateClick("BACKSPACE");
 
-  const handleClick = () => {
-    if (previousEvent !== "CHAINED_OPERATOR" && previousEvent !== "EQUALS")
+  const handleClick = () =>
+    validateClick(dispatch => {
       dispatch(backSpacePress());
-  };
+    });
 
   return (
     <Button onClick={handleClick}>

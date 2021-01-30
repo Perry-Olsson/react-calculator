@@ -48,13 +48,22 @@ export interface State {
   operation: Array<number | string>;
   previousEvent: EventCodes;
   currentNumber: string;
-  validations: any[];
+  validations: OperationValidator[];
+}
+
+export type OperationValidator = (operationData: OperationData) => boolean;
+
+export interface OperationData {
+  state: State;
+  dispatch: Dispatch;
+  event: EventCodes;
+  value: string | undefined;
 }
 
 export type EventCodes =
-  | "CHAINED_OPERATOR"
-  | "INITIAL_OPERATOR"
+  | "OPERATOR"
   | "DIGIT"
+  | "ALL_CLEAR"
   | "EQUALS"
   | "CLEAR"
   | "DECIMAL"

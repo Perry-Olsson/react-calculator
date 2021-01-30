@@ -1,24 +1,17 @@
 import React from "react";
 
 import { Button, Text } from "../../../../../components";
-import {
-  decimalPress,
-  useOperationDispatch,
-  useOperationState,
-} from "../../../../../context/operation";
+import { decimalPress } from "../../../../../context/operation";
+import { useValidateClick } from "../../../../../hooks/useValidateClick";
 import { PressValidator } from "../../../types";
-import { clearAllAfterEquals } from "../../../utils/clearAllAfterEquals";
 
 export const Decimal: React.FC = () => {
-  const dispatch = useOperationDispatch();
-  const state = useOperationState();
+  const validateClick = useValidateClick("DECIMAL");
 
-  const handleClick = () => {
-    if (!hasDecimal(state)) {
-      clearAllAfterEquals(state, dispatch);
-      dispatch(decimalPress());
-    }
-  };
+  const handleClick = () =>
+    validateClick((dispatch, state) => {
+      if (!hasDecimal(state)) dispatch(decimalPress());
+    });
 
   return (
     <Button onClick={handleClick}>

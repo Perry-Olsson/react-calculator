@@ -1,33 +1,20 @@
 import React from "react";
 
 import { Button, Text } from "../../../../../components";
-import {
-  equalsPress,
-  useOperationDispatch,
-  useOperationState,
-} from "../../../../../context/operation";
-import { State } from "../../../../../context/operation/types";
-import { PressValidator } from "../../../types";
-import { disableAfterDecimal } from "../../../utils/disableAfterDecimal";
+import { equalsPress } from "../../../../../context/operation";
+import { useValidateClick } from "../../../../../hooks/useValidateClick";
 
 export const Equals: React.FC = () => {
-  const state = useOperationState();
-  const dispatch = useOperationDispatch();
+  const validateClick = useValidateClick("EQUALS");
 
-  const dispatcher = (state: State) => {
-    if (isValidOperation(state)) dispatch(equalsPress());
-  };
-
-  const handleClick = () => disableAfterDecimal(state, dispatcher);
+  const handleClick = () =>
+    validateClick(dispatch => {
+      dispatch(equalsPress());
+    });
 
   return (
     <Button onClick={handleClick}>
       <Text value="=" />
     </Button>
   );
-};
-
-const isValidOperation: PressValidator = ({ currentNumber, previousEvent }) => {
-  if (currentNumber && previousEvent !== "CHAINED_OPERATOR") return true;
-  return false;
 };

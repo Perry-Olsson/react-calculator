@@ -1,8 +1,7 @@
 import { State } from "../types";
-import { clearPreviousAnswer } from "../utils";
 
 export const handleSignPress = (state: State): State => {
-  const currentNumber = toggleSign(clearPreviousAnswer(state));
+  const currentNumber = toggleSign(state.currentNumber);
 
   return {
     ...state,
