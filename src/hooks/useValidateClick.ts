@@ -8,22 +8,23 @@ export const useValidateClick = (event: EventCodes, value?: string) => {
   const runValidators = (
     handleClick: (dispatch: Dispatch, state: State) => void
   ): void => {
-    if (isValidPress(state, dispatch, event, value))
+    if (isValidClick(state, dispatch, event, value))
       handleClick(dispatch, state);
   };
 
   return runValidators;
 };
 
-export const isValidPress = (
+export const isValidClick = (
   state: State,
   dispatch: Dispatch,
   event: EventCodes,
   value?: string
 ): boolean => {
   if (isInvalidOnNoNumber(state, event)) return false;
-  for (const validator of state.validations) {
-    if (!validator({ state, dispatch, event, value })) return false;
+
+  for (const isValid of state.validations) {
+    if (!isValid({ state, dispatch, event, value })) return false;
   }
   return true;
 };
@@ -37,6 +38,7 @@ const isInvalidOnNoNumber = (
     event === "ALL_CLEAR" ||
     event === "DECIMAL" ||
     event === "DIGIT" ||
+    event === "SIGN" ||
     (event === "OPERATOR" && operation.length)
   )
     return false;

@@ -29,5 +29,6 @@ const updateOperation: ActionHandler<OperatorPress> = (state, action) => {
     operation: appendOperation(state, payload),
     previousEvent: "OPERATOR",
     currentNumber,
+    validations: [],
   };
 };

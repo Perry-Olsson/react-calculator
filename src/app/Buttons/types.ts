@@ -5,4 +5,4 @@ export interface ButtonProps {
   restProps?: React.HTMLAttributes<any>;
 }
 
-export type PressValidator<T = null> = (state: State, value?: T) => boolean;
+export type ClickValidator<T = null> = (state: State, value?: T) => boolean;

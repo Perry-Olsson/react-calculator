@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Text } from "../../../../../components";
 import { decimalPress } from "../../../../../context/operation";
 import { useValidateClick } from "../../../../../hooks/useValidateClick";
-import { PressValidator } from "../../../types";
+import { ClickValidator } from "../../../types";
 
 export const Decimal: React.FC = () => {
   const validateClick = useValidateClick("DECIMAL");
@@ -20,7 +20,7 @@ export const Decimal: React.FC = () => {
   );
 };
 
-const hasDecimal: PressValidator = ({ currentNumber }) => {
+const hasDecimal: ClickValidator = ({ currentNumber }) => {
   if (currentNumber.includes(".")) return true;
   return false;
 };

@@ -6,4 +6,5 @@ export const handleEqualsPress = (state: State): State => ({
   operation: appendOperation(state, [state.currentNumber, "=", "answer"]),
   previousEvent: "EQUALS",
   currentNumber: "answer",
+  validations: [],
 });

@@ -6,7 +6,8 @@ export type Action =
   | BackSpacePress
   | EqualsPress
   | DecimalPress
-  | SignPress;
+  | SignPress
+  | UpdateCurrentNumber;
 
 export interface NumberPress {
   type: "NUMBER_PRESS";
@@ -40,6 +41,11 @@ export interface DecimalPress {
 
 export interface SignPress {
   type: "SIGN_PRESS";
+}
+
+export interface UpdateCurrentNumber {
+  type: "UPDATE_CURRENT_NUMBER";
+  payload: string;
 }
 
 export type ActionHandler<T = Action> = (state: State, action: T) => State;
