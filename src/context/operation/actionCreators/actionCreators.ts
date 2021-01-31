@@ -7,7 +7,8 @@ import {
   EqualsPress,
   DecimalPress,
   SignPress,
-  UpdateCurrentNumber,
+  UpdateState,
+  State,
 } from "../types";
 
 export const numberPress = (payload: string): NumberPress => ({
@@ -20,8 +21,8 @@ export const operatorPress = (payload: string): OperatorPress => ({
   payload,
 });
 
-export const updateCurrentNumber = (payload: string): UpdateCurrentNumber => ({
-  type: "UPDATE_CURRENT_NUMBER",
+export const updateState = (payload: State): UpdateState => ({
+  type: "UPDATE_STATE",
   payload,
 });
 

@@ -1,11 +1,5 @@
-import { ActionHandler, UpdateCurrentNumber } from "../types";
+import { UpdateState } from "../types";
 
-export const handleUpdateCurrentNumber: ActionHandler<UpdateCurrentNumber> = (
-  state,
-  action
-) => {
-  return {
-    ...state,
-    currentNumber: action.payload,
-  };
+export const handleUpdateState = (action: UpdateState) => {
+  return action.payload;
 };

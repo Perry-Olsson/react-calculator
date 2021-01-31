@@ -1,4 +1,4 @@
-import { updateCurrentNumber } from "../actionCreators";
+import { updateState } from "../actionCreators";
 import { Dispatch, EventCodes, OperationValidator, State } from "../types";
 
 export const handleSignPress = (state: State): State => {
@@ -19,17 +19,17 @@ const toggleSign = (currentNumber: string): string => {
 };
 
 const isValidWithOnlySign: OperationValidator = ({
-  state: { currentNumber },
+  state,
   event,
   dispatch,
   value,
 }) => {
   if (
-    currentNumber.length > 1 ||
+    state.currentNumber.length > 1 ||
     (event === "DIGIT" && value !== "0") ||
     event === "DECIMAL"
   ) {
-    addZeroBeforeLeadingDecimal(event, currentNumber, dispatch);
+    addZeroBeforeLeadingDecimal(event, state, dispatch);
     return true;
   }
   return false;
@@ -37,9 +37,9 @@ const isValidWithOnlySign: OperationValidator = ({
 
 const addZeroBeforeLeadingDecimal = (
   event: EventCodes,
-  currentNumber: string,
+  state: State,
   dispatch: Dispatch
 ): void => {
-  if (event === "DECIMAL" && currentNumber.length === 1)
-    dispatch(updateCurrentNumber("-0"));
+  if (event === "DECIMAL" && state.currentNumber.length === 1)
+    dispatch(updateState(state));
 };

@@ -7,7 +7,7 @@ import {
   handleEqualsPress,
   handleNumberPress,
   handleOperatorPress,
-  handleUpdateCurrentNumber,
+  handleUpdateState,
 } from "./eventHandlers";
 import { handleSignPress } from "./eventHandlers/signPress";
 
@@ -29,7 +29,7 @@ export const operationReducer = (state: State, action: Action): State => {
       return handleDecimalPress(state);
     case "SIGN_PRESS":
       return handleSignPress(state);
-    case "UPDATE_CURRENT_NUMBER":
-      return handleUpdateCurrentNumber(state, action);
+    case "UPDATE_STATE":
+      return handleUpdateState(action);
   }
 };

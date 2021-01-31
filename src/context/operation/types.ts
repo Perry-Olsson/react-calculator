@@ -7,7 +7,7 @@ export type Action =
   | EqualsPress
   | DecimalPress
   | SignPress
-  | UpdateCurrentNumber;
+  | UpdateState;
 
 export interface NumberPress {
   type: "NUMBER_PRESS";
@@ -43,21 +43,24 @@ export interface SignPress {
   type: "SIGN_PRESS";
 }
 
-export interface UpdateCurrentNumber {
-  type: "UPDATE_CURRENT_NUMBER";
-  payload: string;
+export interface UpdateState {
+  type: "UPDATE_STATE";
+  payload: State;
 }
 
 export type ActionHandler<T = Action> = (state: State, action: T) => State;
 
 export interface State {
-  operation: Array<number | string>;
+  operation: Array<string>;
   previousEvent: EventCodes;
   currentNumber: string;
   validations: OperationValidator[];
+  operationUpdates: OperationUpdater[];
 }
 
 export type OperationValidator = (operationData: OperationData) => boolean;
+
+export type OperationUpdater = (operationData: OperationData) => void;
 
 export interface OperationData {
   state: State;

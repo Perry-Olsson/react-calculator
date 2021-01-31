@@ -1,7 +1,3 @@
 - equalts press after operator
 
-- sign button
-
-- move isValidPress function to 
-
 - clear previous answer
