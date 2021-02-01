@@ -1,2 +1,7 @@
+- sqrt and squared buttons
 
-- operator after equals
+- evaluate operation function
+
+- calc compressor function
+
+- max digits for currentNumber
