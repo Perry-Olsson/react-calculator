@@ -1,5 +1,5 @@
 import { State } from "../types";
-import { restorOperatorState } from "../utils/restoreOperatorValidations";
+import { restorOperatorState } from "../utils";
 
 export const handleClearPress = (state: State): State => {
   const [validations, operationUpdates] = restorOperatorState(state);

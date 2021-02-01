@@ -1,5 +1,10 @@
 import { useOperationDispatch, useOperationState } from "../context/operation";
-import { Dispatch, ButtonCodes, State } from "../context/operation/types";
+import {
+  Dispatch,
+  ButtonCodes,
+  State,
+  OperationData,
+} from "../context/operation/types";
 
 export const useValidateClick = (button: ButtonCodes, value?: string) => {
   const state = useOperationState();
@@ -25,6 +30,8 @@ export const isValidAndNeedsUpdate = (
   const operationData = { state, button, value };
 
   if (isInvalidOnNoNumber(state, button)) return false;
+
+  if (isInvalidAfterDecimal(operationData)) return false;
 
   for (const isValid of state.validations) {
     if (!isValid(operationData)) return false;
@@ -52,4 +59,12 @@ const isInvalidOnNoNumber = (
   )
     return false;
   return true;
+};
+
+const isInvalidAfterDecimal = ({ state, button }: OperationData) => {
+  if (state.currentNumber[state.currentNumber.length - 1] !== ".") return false;
+
+  if (button === "OPERATOR" || button === "EQUALS") return true;
+
+  return false;
 };

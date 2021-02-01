@@ -1,15 +1,20 @@
 import { updateState } from "../actionCreators";
 import { OperationUpdater, OperationValidator, State } from "../types";
+import { restorePreviousState } from "../utils";
 
 export const handleSignPress = (state: State): State => {
   const currentNumber = toggleSign(state.currentNumber);
+  const [validations, operationUpdates] = getValidationsAndUpdates(
+    state,
+    currentNumber
+  );
 
   return {
     ...state,
     previousEvent: "SIGN",
     currentNumber,
-    validations: [...state.validations, isValidWithOnlySign],
-    operationUpdates: [addZeroBeforeLeadingDecimal],
+    validations,
+    operationUpdates,
   };
 };
 
@@ -17,6 +22,14 @@ const toggleSign = (currentNumber: string): string => {
   return currentNumber[0] === "-"
     ? currentNumber.slice(1)
     : `-${currentNumber}`;
+};
+
+const getValidationsAndUpdates = (
+  state: State,
+  currentNumber: string
+): [OperationValidator[], OperationUpdater[]] => {
+  if (currentNumber[0] === "-") return [signValidations, signUpdates];
+  else return restorePreviousState(state);
 };
 
 const isValidWithOnlySign: OperationValidator = ({
@@ -27,7 +40,9 @@ const isValidWithOnlySign: OperationValidator = ({
   if (
     state.currentNumber.length > 1 ||
     (event === "DIGIT" && value !== "0") ||
-    event === "DECIMAL"
+    event === "DECIMAL" ||
+    event === "SIGN" ||
+    event === "BACKSPACE"
   ) {
     return true;
   }
@@ -42,3 +57,6 @@ const addZeroBeforeLeadingDecimal: OperationUpdater = (
     dispatch(updateState({ ...state, currentNumber: "-0" }));
   return false;
 };
+
+const signValidations = [isValidWithOnlySign];
+const signUpdates = [addZeroBeforeLeadingDecimal];

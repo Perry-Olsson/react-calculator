@@ -36,11 +36,12 @@ const invalidateButtons: OperationValidator = ({ button: event }) => {
 };
 
 const runClear: OperationUpdater = ({ button: event }, dispatch) => {
-  if (event === "DIGIT" || event === "DECIMAL") dispatch(clearPress());
+  if (event === "DIGIT" || event === "DECIMAL" || event === "SIGN")
+    dispatch(clearPress());
   return false;
 };
 
-const operatorChange: OperationUpdater = (
+export const operatorChange: OperationUpdater = (
   { state, button: event, value },
   dispatch
 ) => {
