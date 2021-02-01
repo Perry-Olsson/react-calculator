@@ -52,7 +52,6 @@ export type ActionHandler<T = Action> = (state: State, action: T) => State;
 
 export interface State {
   operation: Array<string>;
-  previousEvent: ButtonCodes;
   currentNumber: string;
   validations: OperationValidator[];
   operationUpdates: OperationUpdater[];

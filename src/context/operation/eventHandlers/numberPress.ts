@@ -6,7 +6,6 @@ export const handleNumberPress: ActionHandler<NumberPress> = (
   action
 ) => ({
   ...state,
-  previousEvent: "DIGIT",
   currentNumber: appendCurrentNumber(state, action.payload),
   validations: numberValidations,
   operationUpdates: numberUpdates,

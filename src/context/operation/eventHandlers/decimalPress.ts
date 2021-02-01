@@ -1,4 +1,4 @@
-import { State, OperationValidator } from "../types";
+import { State } from "../types";
 import { appendCurrentNumber } from "../utils";
 
 export const handleDecimalPress = (state: State): State => {
@@ -7,10 +7,9 @@ export const handleDecimalPress = (state: State): State => {
 
   return {
     ...state,
-    previousEvent: "DECIMAL",
     currentNumber,
-    validations: decimalValidations,
-    operationUpdates: decimalUpdates,
+    validations: [],
+    operationUpdates: [],
   };
 };
 
@@ -22,11 +21,3 @@ const isLeadingDecimal = ({ currentNumber }: State) => {
 const prependZero = () => {
   return "0.";
 };
-
-const invalidateButtons: OperationValidator = ({ button: event }) => {
-  if (event === "OPERATOR" || event === "EQUALS") return false;
-  return true;
-};
-
-export const decimalValidations = [invalidateButtons];
-export const decimalUpdates = [];

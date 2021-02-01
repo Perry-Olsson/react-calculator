@@ -23,7 +23,6 @@ const updateOperation: ActionHandler<OperatorPress> = (state, action) => {
   return {
     ...state,
     operation: appendOperation(state, payload),
-    previousEvent: "OPERATOR",
     currentNumber,
     validations: operatorValidations,
     operationUpdates: operatorUpdates,

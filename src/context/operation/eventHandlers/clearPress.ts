@@ -6,7 +6,6 @@ export const handleClearPress = (state: State): State => {
 
   return {
     ...state,
-    previousEvent: "CLEAR",
     currentNumber: "",
     validations,
     operationUpdates,

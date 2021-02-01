@@ -11,7 +11,6 @@ export const handleSignPress = (state: State): State => {
 
   return {
     ...state,
-    previousEvent: "SIGN",
     currentNumber,
     validations,
     operationUpdates,
