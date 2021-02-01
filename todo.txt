@@ -1,5 +1,2 @@
-- equals press after operator
-
-- clear previous answer
 
 - operator after equals
