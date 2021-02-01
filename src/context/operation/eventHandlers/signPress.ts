@@ -45,7 +45,8 @@ const isValidWithOnlySign: OperationValidator = ({
     (event === "DIGIT" && value !== "0") ||
     event === "DECIMAL" ||
     event === "SIGN" ||
-    event === "BACKSPACE"
+    event === "BACKSPACE" ||
+    event === "CLEAR"
   ) {
     return true;
   }
