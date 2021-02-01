@@ -35,10 +35,7 @@ const invalidateButtons: OperationValidator = ({ button: event }) => {
   return true;
 };
 
-const runClearOnDigitClick: OperationUpdater = (
-  { button: event },
-  dispatch
-) => {
+const runClear: OperationUpdater = ({ button: event }, dispatch) => {
   if (event === "DIGIT" || event === "DECIMAL") dispatch(clearPress());
   return false;
 };
@@ -65,4 +62,4 @@ const changeOperator = (state: State, operator: string) => {
 };
 
 export const operatorValidations = [invalidateButtons];
-export const operatorUpdates = [runClearOnDigitClick, operatorChange];
+export const operatorUpdates = [runClear, operatorChange];

@@ -23,10 +23,10 @@ const prependZero = () => {
   return "0.";
 };
 
-const invalidateOperator: OperationValidator = ({ button: event }) => {
+const invalidateButtons: OperationValidator = ({ button: event }) => {
   if (event === "OPERATOR" || event === "EQUALS") return false;
   return true;
 };
 
-export const decimalValidations = [invalidateOperator];
+export const decimalValidations = [invalidateButtons];
 export const decimalUpdates = [];
