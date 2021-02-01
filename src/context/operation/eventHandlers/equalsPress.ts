@@ -1,3 +1,4 @@
+import { initialOperationState } from "../../../constants";
 import { allClearPress, updateState } from "../actionCreators";
 import { OperationUpdater, OperationValidator, State } from "../types";
 import { appendOperation } from "../utils";
@@ -7,8 +8,8 @@ export const handleEqualsPress = (state: State): State => ({
   operation: appendOperation(state, [state.currentNumber, "=", "answer"]),
   previousEvent: "EQUALS",
   currentNumber: "answer",
-  validations: [invalidateButtons],
-  operationUpdates: [runAllClear, runPreviousCalculationOnEquals],
+  validations: equalsValidations,
+  operationUpdates: equalsUpdates,
 });
 
 const invalidateButtons: OperationValidator = ({ button, value }) => {
@@ -19,7 +20,12 @@ const invalidateButtons: OperationValidator = ({ button, value }) => {
 
 const runAllClear: OperationUpdater = ({ button: event }, dispatch) => {
   let clickHandled = false;
-  if (event === "DIGIT" || event === "DECIMAL" || event === "CLEAR")
+  if (
+    event === "DIGIT" ||
+    event === "DECIMAL" ||
+    event === "CLEAR" ||
+    event === "SIGN"
+  )
     dispatch(allClearPress());
   if (event === "CLEAR") clickHandled = true;
 
@@ -27,10 +33,10 @@ const runAllClear: OperationUpdater = ({ button: event }, dispatch) => {
 };
 
 const runPreviousCalculationOnEquals: OperationUpdater = (
-  { state, button: event },
+  { state, button },
   dispatch
 ) => {
-  if (event === "EQUALS") {
+  if (button === "EQUALS") {
     const operation = getPreviousAnswerAndOperater(state);
     const currentNumber = getLastOperand(state);
 
@@ -39,6 +45,18 @@ const runPreviousCalculationOnEquals: OperationUpdater = (
         ...state,
         operation,
         currentNumber,
+      })
+    );
+  }
+  return false;
+};
+
+const runOperatorOnAnswer: OperationUpdater = ({ state, button }, dispatch) => {
+  if (button === "OPERATOR") {
+    dispatch(
+      updateState({
+        ...initialOperationState,
+        currentNumber: state.currentNumber,
       })
     );
   }
@@ -55,3 +73,10 @@ const getPreviousAnswerAndOperater = ({
 const getLastOperand = ({ operation }: State): string => {
   return operation[operation.length - 3];
 };
+
+export const equalsValidations = [invalidateButtons];
+export const equalsUpdates = [
+  runAllClear,
+  runPreviousCalculationOnEquals,
+  runOperatorOnAnswer,
+];
