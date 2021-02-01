@@ -9,6 +9,7 @@ import {
   SignPress,
   UpdateState,
   State,
+  PercentPress,
 } from "../types";
 
 export const numberPress = (payload: string): NumberPress => ({
@@ -48,4 +49,8 @@ export const equalsPress = (): EqualsPress => ({
 
 export const signPress = (): SignPress => ({
   type: "SIGN_PRESS",
+});
+
+export const percentPress = (): PercentPress => ({
+  type: "PERCENT_PRESS",
 });

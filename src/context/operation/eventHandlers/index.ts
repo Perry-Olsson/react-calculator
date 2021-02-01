@@ -6,3 +6,4 @@ export * from "./backspacePress";
 export * from "./equalsPress";
 export * from "./decimalPress";
 export * from "./updateCurrentNumber";
+export * from "./percentPress";

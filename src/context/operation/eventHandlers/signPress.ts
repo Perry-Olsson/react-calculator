@@ -1,13 +1,17 @@
 import { updateState } from "../actionCreators";
 import { OperationUpdater, OperationValidator, State } from "../types";
 import { restorePreviousState } from "../utils";
+import { percentUpdates } from "./percentPress";
 
 export const handleSignPress = (state: State): State => {
   const currentNumber = toggleSign(state.currentNumber);
-  const [validations, operationUpdates] = getValidationsAndUpdates(
+  let [validations, operationUpdates] = getValidationsAndUpdates(
     state,
     currentNumber
   );
+
+  if (currentNumber.includes("%"))
+    operationUpdates = operationUpdates.concat(percentUpdates);
 
   return {
     ...state,

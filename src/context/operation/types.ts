@@ -7,6 +7,7 @@ export type Action =
   | EqualsPress
   | DecimalPress
   | SignPress
+  | PercentPress
   | UpdateState;
 
 export interface NumberPress {
@@ -41,6 +42,10 @@ export interface DecimalPress {
 
 export interface SignPress {
   type: "SIGN_PRESS";
+}
+
+export interface PercentPress {
+  type: "PERCENT_PRESS";
 }
 
 export interface UpdateState {
@@ -79,6 +84,7 @@ export type ButtonCodes =
   | "DECIMAL"
   | "BACKSPACE"
   | "SIGN"
+  | "PERCENT"
   | "";
 
 export type Dispatch = (action: Action) => void;

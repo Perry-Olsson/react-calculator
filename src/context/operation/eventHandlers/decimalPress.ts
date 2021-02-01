@@ -8,8 +8,8 @@ export const handleDecimalPress = (state: State): State => {
   return {
     ...state,
     currentNumber,
-    validations: [],
-    operationUpdates: [],
+    validations: decimalValidations,
+    operationUpdates: decimalUpdates,
   };
 };
 
@@ -21,3 +21,6 @@ const isLeadingDecimal = ({ currentNumber }: State) => {
 const prependZero = () => {
   return "0.";
 };
+
+export const decimalValidations = [];
+export const decimalUpdates = [];
