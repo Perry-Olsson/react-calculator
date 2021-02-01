@@ -52,7 +52,7 @@ export type ActionHandler<T = Action> = (state: State, action: T) => State;
 
 export interface State {
   operation: Array<string>;
-  previousEvent: EventCodes;
+  previousEvent: ButtonCodes;
   currentNumber: string;
   validations: OperationValidator[];
   operationUpdates: OperationUpdater[];
@@ -60,16 +60,18 @@ export interface State {
 
 export type OperationValidator = (operationData: OperationData) => boolean;
 
-export type OperationUpdater = (operationData: OperationData) => void;
+export type OperationUpdater = (
+  operationData: OperationData,
+  dispatch: Dispatch
+) => boolean;
 
 export interface OperationData {
   state: State;
-  dispatch: Dispatch;
-  event: EventCodes;
+  button: ButtonCodes;
   value: string | undefined;
 }
 
-export type EventCodes =
+export type ButtonCodes =
   | "OPERATOR"
   | "DIGIT"
   | "ALL_CLEAR"

@@ -1,3 +1,5 @@
-- equalts press after operator
+- equals press after operator
 
 - clear previous answer
+
+- operator after equals

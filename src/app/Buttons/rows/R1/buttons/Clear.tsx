@@ -1,15 +1,16 @@
 import React from "react";
 
 import { Button, Text } from "../../../../../components";
-import {
-  clearPress,
-  useOperationDispatch,
-} from "../../../../../context/operation";
+import { clearPress } from "../../../../../context/operation";
+import { useValidateClick } from "../../../../../hooks/useValidateClick";
 
 export const Clear: React.FC = () => {
-  const dispatch = useOperationDispatch();
+  const validateClick = useValidateClick("CLEAR");
 
-  const handleClick = () => dispatch(clearPress());
+  const handleClick = () =>
+    validateClick(dispatch => {
+      dispatch(clearPress());
+    });
 
   return (
     <Button onClick={handleClick}>

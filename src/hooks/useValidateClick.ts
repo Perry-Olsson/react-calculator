@@ -1,37 +1,46 @@
 import { useOperationDispatch, useOperationState } from "../context/operation";
-import { Dispatch, EventCodes, State } from "../context/operation/types";
+import { Dispatch, ButtonCodes, State } from "../context/operation/types";
 
-export const useValidateClick = (event: EventCodes, value?: string) => {
+export const useValidateClick = (button: ButtonCodes, value?: string) => {
   const state = useOperationState();
   const dispatch = useOperationDispatch();
 
-  const runValidators = (
+  const validateClick = (
     handleClick: (dispatch: Dispatch, state: State) => void
   ): void => {
-    if (isValidClick(state, dispatch, event, value))
+    if (isValidAndNeedsUpdate(state, dispatch, button, value))
       handleClick(dispatch, state);
   };
 
-  return runValidators;
+  return validateClick;
 };
 
-export const isValidClick = (
+export const isValidAndNeedsUpdate = (
   state: State,
   dispatch: Dispatch,
-  event: EventCodes,
+  button: ButtonCodes,
   value?: string
 ): boolean => {
-  if (isInvalidOnNoNumber(state, event)) return false;
+  let handleClick = true;
+  const operationData = { state, button, value };
+
+  if (isInvalidOnNoNumber(state, button)) return false;
 
   for (const isValid of state.validations) {
-    if (!isValid({ state, dispatch, event, value })) return false;
+    if (!isValid(operationData)) return false;
   }
-  return true;
+
+  for (const updater of state.operationUpdates) {
+    const clickHandled = updater(operationData, dispatch);
+    if (clickHandled) handleClick = false;
+  }
+
+  return handleClick;
 };
 
 const isInvalidOnNoNumber = (
   { currentNumber, operation }: State,
-  event: EventCodes
+  event: ButtonCodes
 ): boolean => {
   if (
     currentNumber ||

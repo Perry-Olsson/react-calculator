@@ -9,7 +9,8 @@ export const handleDecimalPress = (state: State): State => {
     ...state,
     previousEvent: "DECIMAL",
     currentNumber,
-    validations: [invalidateOperator],
+    validations: decimalValidations,
+    operationUpdates: decimalUpdates,
   };
 };
 
@@ -22,7 +23,10 @@ const prependZero = () => {
   return "0.";
 };
 
-const invalidateOperator: OperationValidator = ({ event }) => {
+const invalidateOperator: OperationValidator = ({ button: event }) => {
   if (event === "OPERATOR" || event === "EQUALS") return false;
   return true;
 };
+
+export const decimalValidations = [invalidateOperator];
+export const decimalUpdates = [];

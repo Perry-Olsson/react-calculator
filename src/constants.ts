@@ -5,4 +5,5 @@ export const initialOperationState: State = {
   previousEvent: "",
   currentNumber: "",
   validations: [],
+  operationUpdates: [],
 };

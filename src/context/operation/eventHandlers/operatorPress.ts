@@ -1,22 +1,18 @@
-import { ActionHandler, OperatorPress, State } from "../types";
-import { appendOperation, changeOperator } from "../utils";
+import { clearPress, updateState } from "..";
+import {
+  ActionHandler,
+  OperationUpdater,
+  OperationValidator,
+  OperatorPress,
+  State,
+} from "../types";
+import { appendOperation } from "../utils";
 
 export const handleOperatorPress: ActionHandler<OperatorPress> = (
   state,
   action
 ) => {
-  if (isOperatorChange(state)) return changeOperator(state, action);
-  else return updateOperation(state, action);
-};
-
-const isOperatorChange = ({ previousEvent, currentNumber }: State) => {
-  if (
-    previousEvent === "OPERATOR" ||
-    ((previousEvent === "BACKSPACE" || previousEvent === "SIGN") &&
-      !currentNumber)
-  )
-    return true;
-  else return false;
+  return updateOperation(state, action);
 };
 
 const updateOperation: ActionHandler<OperatorPress> = (state, action) => {
@@ -29,6 +25,44 @@ const updateOperation: ActionHandler<OperatorPress> = (state, action) => {
     operation: appendOperation(state, payload),
     previousEvent: "OPERATOR",
     currentNumber,
-    validations: [],
+    validations: operatorValidations,
+    operationUpdates: operatorUpdates,
   };
 };
+
+const invalidateButtons: OperationValidator = ({ button: event }) => {
+  if (event === "EQUALS" || event === "BACKSPACE") return false;
+  return true;
+};
+
+const runClearOnDigitClick: OperationUpdater = (
+  { button: event },
+  dispatch
+) => {
+  if (event === "DIGIT" || event === "DECIMAL") dispatch(clearPress());
+  return false;
+};
+
+const operatorChange: OperationUpdater = (
+  { state, button: event, value },
+  dispatch
+) => {
+  if (event === "OPERATOR") {
+    const updatedState = changeOperator(state, value as string);
+
+    dispatch(updateState(updatedState));
+    return true;
+  } else return false;
+};
+
+const changeOperator = (state: State, operator: string) => {
+  return {
+    ...state,
+    operation: state.operation.map((operand, i, operation) =>
+      i === operation.length - 1 ? operator : operand
+    ),
+  };
+};
+
+export const operatorValidations = [invalidateButtons];
+export const operatorUpdates = [runClearOnDigitClick, operatorChange];
