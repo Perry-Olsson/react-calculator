@@ -1,4 +1,5 @@
-import { State } from "../types";
+import { allClearPress } from "../actionCreators";
+import { OperationUpdater, State } from "../types";
 import { appendCurrentNumber } from "../utils";
 
 export const handleDecimalPress = (state: State): State => {
@@ -22,5 +23,13 @@ const prependZero = () => {
   return "0.";
 };
 
+const removeLeadingZero: OperationUpdater = ({ button, state }, dispatch) => {
+  if (button === "BACKSPACE" && state.currentNumber === "0.") {
+    dispatch(allClearPress());
+    return true; //click handled
+  }
+  return false;
+};
+
 export const decimalValidations = [];
-export const decimalUpdates = [];
+export const decimalUpdates: OperationUpdater[] = [removeLeadingZero];
